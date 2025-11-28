@@ -1836,7 +1836,7 @@ protected:
    */
   bool setMasterConfig(const uint8_t id, const uint8_t flags, const bool force = false) {
     const uint8_t rMemberId = (force || id > 0) ? id : vars.slave.memberId;
-    const uint8_t rFlags = (force || flags > 0) ? flags : vars.slave.flags;
+    const uint8_t rFlags = (force || flags > 0) ? flags : 0; // bit0 of master flags force smart power, so flags never should be copied from slave
     const unsigned int request = (unsigned int) rMemberId | (unsigned int) rFlags << 8;
 
     // if empty request
